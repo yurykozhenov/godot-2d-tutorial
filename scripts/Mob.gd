@@ -1,16 +1,30 @@
-extends RigidBody2D
+extends Area2D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	var mob_types = $AnimatedSprite2D.sprite_frames.get_animation_names()
-	$AnimatedSprite2D.play(mob_types[randi() % mob_types.size()])
+@export var speed = 32 # How fast the mob will move (pixels/sec).
+@export var player: Area2D
+
+func move():
+	if position.x != player.position.x and position.y != player.position.y:
+		if randi() % 2 != 0:
+			move_horizontaly()
+		else:
+			move_vertically()
+	elif position.x != player.position.x:
+		move_horizontaly()
+	elif position.y != player.position.y:
+		move_vertically()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func move_horizontaly():
+	if position.x < player.position.x:
+		position.x += speed
+	elif position.x > player.position.x:
+		position.x -= speed
 
 
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()
+func move_vertically():
+	if position.y > player.position.y:
+		position.y -= speed
+	elif position.y < player.position.y:
+		position.y += speed
