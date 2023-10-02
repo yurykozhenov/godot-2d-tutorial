@@ -3,6 +3,7 @@ extends Area2D
 
 @export var speed = 32
 @export var timer: Timer
+@export var direction = "up"
 
 
 func _ready():
@@ -10,7 +11,17 @@ func _ready():
 
 
 func move():
-	position.y -= speed
+	if direction == "up":
+		position.y -= speed
+
+	if direction == "down":
+		position.y += speed
+
+	if direction == "right":
+		position.x += speed
+
+	if direction == "left":
+		position.x -= speed
 
 
 func collision(body: Node):

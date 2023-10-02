@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddcn6i5l8jokd"]
+
+[ext_resource type="Script" path="res://scripts/HUD.gd" id="1_xocm1"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_u2l13"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_4oj5c"]
+events = [SubResource("InputEventAction_u2l13")]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_xocm1")
+
+[node name="Time" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_right = 40.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "60"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Message" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -80.0
+offset_right = 136.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="RestartButton" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -160.0
+offset_right = 96.0
+offset_bottom = -97.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+shortcut = SubResource("Shortcut_4oj5c")
+text = "Restart"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

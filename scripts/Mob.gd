@@ -4,6 +4,7 @@ extends Area2D
 @export var speed = 32 # How fast the mob will move (pixels/sec).
 @export var player: Area2D
 
+
 func move():
 	if position.x != player.position.x and position.y != player.position.y:
 		if randi() % 2 != 0:

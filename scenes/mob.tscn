@@ -1,36 +1,58 @@
-[gd_scene load_steps=6 format=3 uid="uid://vof2brg4kswr"]
+[gd_scene load_steps=8 format=3 uid="uid://vof2brg4kswr"]
 
 [ext_resource type="Script" path="res://scripts/Mob.gd" id="1_sr47n"]
-[ext_resource type="Texture2D" uid="uid://c354sa33qywn8" path="res://art/enemyWalking_1.png" id="6_plhj4"]
-[ext_resource type="Texture2D" uid="uid://b81spiqxmayh5" path="res://art/enemyWalking_2.png" id="7_wdg6t"]
+[ext_resource type="Texture2D" uid="uid://bqpqbvwcwbr0c" path="res://art/SKELETON_BOT.png" id="2_0myd6"]
+[ext_resource type="Texture2D" uid="uid://c8oijhhakms12" path="res://art/SKELETON_RIGHT.png" id="2_03a18"]
+[ext_resource type="Texture2D" uid="uid://b5xmiany21ppl" path="res://art/SKELETON_LEFT.png" id="3_0e61q"]
+[ext_resource type="Texture2D" uid="uid://pk6yo3ruq6uh" path="res://art/SKELETON_TOP.png" id="3_y67wo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qu5df"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_plhj4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_wdg6t")
+"texture": ExtResource("2_0myd6")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0e61q")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_03a18")
+}],
+"loop": true,
+"name": &"right",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_y67wo")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7tyqb"]
-radius = 24.0
-height = 64.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nklav"]
+size = Vector2(31, 31)
 
 [node name="Mob" type="Area2D" groups=["mobs"]]
+scale = Vector2(2, 2)
 script = ExtResource("1_sr47n")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qu5df")
-animation = &"walk"
-autoplay = "walk"
+animation = &"down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_7tyqb")
+shape = SubResource("RectangleShape2D_nklav")

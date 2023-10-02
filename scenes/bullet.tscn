@@ -1,39 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://beviqg85igen0"]
+[gd_scene load_steps=5 format=3 uid="uid://beviqg85igen0"]
 
 [ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_jxg38"]
-[ext_resource type="Texture2D" uid="uid://cm2htdyw4bvj5" path="res://art/playerGrey_walk1.png" id="2_uqbl6"]
-[ext_resource type="Texture2D" uid="uid://chc3f0msu0ey1" path="res://art/playerGrey_walk2.png" id="3_dei3g"]
+[ext_resource type="Texture2D" uid="uid://b381leubrf72a" path="res://art/PROJECTILE.png" id="2_qfrua"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h27mg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_uqbl6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_dei3g")
+"texture": ExtResource("2_qfrua")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tb263"]
-radius = 16.0
-height = 32.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4g86v"]
+size = Vector2(31, 31)
 
 [node name="Bullet" type="Area2D"]
 position = Vector2(-1, 0)
+scale = Vector2(2, 2)
 script = ExtResource("1_jxg38")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_h27mg")
-autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_tb263")
+shape = SubResource("RectangleShape2D_4g86v")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
